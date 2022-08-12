@@ -1,1 +1,145 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap");
+@import "variables";
+
+$primary: $color-primary;
+$secondary: $color-secondary;
+$success: $color-success;
+$danger: $color-danger;
+$info: $color-info;
+$light: $color-light;
+$gray: $color-gray;
+$dark: $color-dark;
+$white: $color-white;
+
+$enable-cssgrid: true;
+$tooltip-bg: $primary;
+$tooltip-color: $dark;
+$form-check-input-checked-bg-color: $primary;
+$form-check-input-checked-border-color: $primary;
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+body {
+  background: $dark;
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  color: $light;
+  line-height: 1.4rem;
+  hyphens: auto;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: -webkit-fill-available;
+}
+html {
+  scroll-behavior: smooth;
+  height: -webkit-fill-available;
+}
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  vertical-align: baseline;
+}
+img,
+picture,
+video,
+iframe,
+figure {
+  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+}
+p a {
+  display: inline;
+}
+li {
+  list-style-type: none;
+}
+html {
+  scroll-behavior: smooth;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+strong,
+blockquote,
+i,
+b,
+u,
+em {
+  font-size: 1em;
+  font-weight: inherit;
+  font-style: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+form,
+input,
+textarea,
+select,
+button,
+label {
+  font-family: inherit;
+  font-size: inherit;
+  hyphens: auto;
+  background-color: transparent;
+  color: inherit;
+  display: block;
+  appearance: none;
+}
+table,
+tr,
+td {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+svg {
+  width: 100%;
+  display: block;
+  fill: currentColor;
+}
+::selection {
+  background-color: $primary;
+  color: $dark;
+}
+:host {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+  border-left: $light solid 1px;
+  border-radius: 3px;
+  &-track {
+    background: $dark;
+  }
+  &-thumb {
+    background: $primary;
+    border-radius: 3px;
+  }
+}
