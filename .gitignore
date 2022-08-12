@@ -42,4 +42,5 @@ testem.log
 Thumbs.db
 
 # Evironment variables
-src/environments/environment.prod.ts
+environment.prod.ts
+/src/environments/environment.prod.ts

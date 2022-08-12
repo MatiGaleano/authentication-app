@@ -1,0 +1,18 @@
+@import "variables";
+
+.body {
+  margin-top: 5vh;
+  height: 75vh;
+  box-shadow: 5px 5px 10px 3px $color-shadow;
+  transition: all 0.5s ease;
+  &__picture{
+    height: 100%;
+    background-image: url("/assets/images/login-form.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  &__image{
+    height: 20vh;
+    width: auto;
+  }
+}

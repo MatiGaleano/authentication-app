@@ -1,1 +1,57 @@
-<p>login-form works!</p>
+<section class="container vh-100 py-2">
+  <div
+    class="card mb-3 bg-light bg-opacity-25 border border-3 border-primary rounded-2 body"
+  >
+    <div class="d-flex h-100 justify-content-center align-items-center">
+      <div class="d-none d-md-block col-md-6 rounded-2 body__picture"></div>
+      <div class="d-flex flex-column col-md-6 h-100 body__wrapped">
+        <div class="my-auto mx-3">
+          <h3 class="text-center fs-1 mb-3">Login</h3>
+          <div class="text-center mb-5">
+            <img
+              src="/assets/images/locked.png"
+              alt="Imagen de un candado"
+              class="body__image"
+            />
+          </div>
+          <form autocomplete="off" class="body__form">
+            <div class="form-floating mb-3 col-8 offset-2">
+              <input
+                class="form-control bg-light bg-opacity-25 text-light border-light border-opacity-25"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+              />
+              <label class="text-dark" for="email">Email</label>
+            </div>
+            <div class="form-floating mb-3 col-8 offset-2">
+              <input
+                class="form-control bg-light bg-opacity-25 text-light border-light border-opacity-25"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Contraseña"
+              />
+              <label class="text-dark" for="password">Contraseña</label>
+            </div>
+            <input
+              type="submit"
+              class="btn bg-primary bg-opacity-75 text-light col-8 offset-2 mb-3 login__button"
+              value="Login"
+            />
+          </form>
+          <div class="text-center">
+            <p>
+              Todavia no tienes una cuenta?
+              <a class="text-primary" routerLink="/register">Registrarse</a>
+            </p>
+            <a class="text-primary" routerLink="/pass-recover">
+              Recuperar Contraseña</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
