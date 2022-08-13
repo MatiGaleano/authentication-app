@@ -14,12 +14,17 @@
               class="body__image"
             />
           </div>
-          <form autocomplete="off" class="body__form">
+          <form
+            (ngSubmit)="onSubmit()"
+            [formGroup]="userLogin"
+            autocomplete="off"
+            class="body__form"
+          >
             <div class="form-floating mb-3 col-8 offset-2">
               <input
                 class="form-control bg-light bg-opacity-25 text-light border-light border-opacity-25"
                 type="email"
-                name="email"
+                formControlName="email"
                 id="email"
                 placeholder="Email"
               />
@@ -29,7 +34,7 @@
               <input
                 class="form-control bg-light bg-opacity-25 text-light border-light border-opacity-25"
                 type="password"
-                name="password"
+                formControlName="password"
                 id="password"
                 placeholder="Contraseña"
               />

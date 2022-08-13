@@ -14,12 +14,12 @@
               class="body__image"
             />
           </div>
-          <form autocomplete="off" class="body__form">
+          <form (ngSubmit)="onSubmit()" [formGroup]="userRegister" autocomplete="off" class="body__form">
             <div class="form-floating mb-3 col-8 offset-2">
               <input
                 class="form-control bg-light bg-opacity-25 text-light border-light border-opacity-25"
                 type="email"
-                name="email"
+                formControlName="email"
                 id="email"
                 placeholder="Email"
               />
@@ -29,7 +29,7 @@
               <input
                 class="form-control bg-light bg-opacity-25 text-light border-light border-opacity-25"
                 type="password"
-                name="password"
+                formControlName="password"
                 id="password"
                 placeholder="Contraseña"
               />
@@ -40,11 +40,11 @@
               <input
                 class="form-control bg-light bg-opacity-25 text-light border-light border-opacity-25"
                 type="password"
-                name="passrepeat"
-                id="passrepeat"
+                formControlName="passRepeat"
+                id="passRepeat"
                 placeholder="Repetir Contraseña"
               />
-              <label class="text-dark" for="password">Repetir Contraseña</label>
+              <label class="text-dark" for="passRepeat">Repetir Contraseña</label>
             </div>
             <input
               type="submit"
