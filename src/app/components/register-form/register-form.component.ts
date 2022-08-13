@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CodeErrorService } from 'src/app/services/code-error.service';
 
 @Component({
   selector: 'app-register-form',
@@ -16,26 +17,27 @@ export class RegisterFormComponent implements OnInit {
     private fb: FormBuilder,
     private afAuth: AngularFireAuth,
     private toastr: ToastrService,
-    private router: Router
-    ) {
+    private router: Router,
+    private codeError: CodeErrorService
+  ) {
     this.userRegister = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(
-            '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$'
-          )]],
-      passRepeat: ['',[
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(
-            '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$'
-          )]]
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      passRepeat: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
   ngOnInit(): void {}
+
+  get Email() {
+    return this.userRegister.get('email');
+  }
+  get Password() {
+    return this.userRegister.get('password');
+  }
+  get PassRepeat() {
+    return this.userRegister.get('passRepeat');
+  }
 
   onSubmit(): void {
     const email = this.userRegister.value.email;
@@ -44,22 +46,15 @@ export class RegisterFormComponent implements OnInit {
       this.toastr.error('Las contraseñas no coinciden');
       return;
     }
-    this.afAuth.createUserWithEmailAndPassword(email, password).then((ress) => {
-      console.log(ress);
-      this.router.navigate(['/login']);
-      this.toastr.success('Verifica tu correo para continuar', 'Registro exitoso');
-    }).catch((error) => {
-      console.log(error);
-      this.toastr.error(this.firebaseError(error.code), 'Error');
-    });
-  }
-
-  firebaseError(error: string): string {
-    switch (error) {
-      case 'auth/email-already-in-use': return 'El correo ya está en uso';
-      case 'auth/invalid-email': return 'El correo no es válido';
-      case 'auth/weak-password': return 'La contraseña es demasiado débil';
-      default: return 'Error desconocido';
-    }
+    this.afAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        this.router.navigate(['/login']);
+        this.toastr.success('Registro exitoso', 'Bienvenido');
+      })
+      .catch((error) => {
+        console.log(error);
+        this.toastr.error(this.codeError.response(error.code), 'Error');
+      });
   }
 }

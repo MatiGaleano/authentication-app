@@ -22,8 +22,15 @@
                 formControlName="email"
                 id="email"
                 placeholder="Email"
+                [ngClass]="{ 'is-invalid': Email?.invalid && Email?.touched, 'is-valid': Email?.valid && Email?.touched }"
               />
               <label class="text-dark" for="email">Email</label>
+              <span class="text-danger" *ngIf="Email?.hasError('required') && Email?.touched">
+                El <strong>Email</strong> es requerido
+              </span>
+              <span class="text-danger" *ngIf="Email?.hasError('email') && Email?.touched">
+                El <strong>Email</strong> no es válido
+              </span>
             </div>
             <div class="form-floating mb-3 col-8 offset-2">
               <input
@@ -32,8 +39,12 @@
                 formControlName="password"
                 id="password"
                 placeholder="Contraseña"
+                [ngClass]="{ 'is-invalid': Password?.invalid && Password?.touched, 'is-valid': Password?.valid && Password?.touched }"
               />
               <label class="text-dark" for="password">Contraseña</label>
+              <span class="text-danger" *ngIf="Password?.hasError('required') && Password?.touched">
+                La <strong>Contraseña</strong> es requerida
+              </span>
             </div>
 
             <div class="form-floating mb-3 col-8 offset-2">
@@ -43,8 +54,12 @@
                 formControlName="passRepeat"
                 id="passRepeat"
                 placeholder="Repetir Contraseña"
+                [ngClass]="{ 'is-invalid': PassRepeat?.invalid && PassRepeat?.touched, 'is-valid': PassRepeat?.valid && PassRepeat?.touched }"
               />
               <label class="text-dark" for="passRepeat">Repetir Contraseña</label>
+              <span class="text-danger" *ngIf="PassRepeat?.hasError('required') && PassRepeat?.touched">
+                Repetir la <strong>Contraseña</strong> es requerido
+              </span>
             </div>
             <input
               type="submit"

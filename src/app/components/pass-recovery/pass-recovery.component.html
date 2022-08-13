@@ -14,16 +14,23 @@
               class="body__image"
             />
           </div>
-          <form autocomplete="off" class="body__form">
+          <form (ngSubmit)="onSubmit()" [formGroup]="userRecovery" autocomplete="off" class="body__form">
             <div class="form-floating mb-3 col-8 offset-2">
               <input
                 class="form-control bg-light bg-opacity-25 text-light border-light border-opacity-25"
                 type="email"
-                name="email"
+                formControlName="email"
                 id="email"
                 placeholder="Email"
+                [ngClass]="{ 'is-invalid': Email?.invalid && Email?.touched, 'is-valid': Email?.valid && Email?.touched }"
               />
               <label class="text-dark" for="email">Email</label>
+              <span class="text-danger" *ngIf="Email?.hasError('required') && Email?.touched">
+                El <strong>Email</strong> es requerido
+              </span>
+              <span class="text-danger" *ngIf="Email?.hasError('email') && Email?.touched">
+                El <strong>Email</strong> no es válido
+              </span>
             </div>
             <input
               type="submit"

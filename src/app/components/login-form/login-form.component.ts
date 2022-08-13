@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CodeErrorService } from 'src/app/services/code-error.service';
 
 @Component({
   selector: 'app-login-form',
@@ -16,10 +17,11 @@ export class LoginFormComponent implements OnInit {
     private fb: FormBuilder,
     private afAuth: AngularFireAuth,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private codeError: CodeErrorService
     ) {
       this.userLogin = this.fb.group({
-        email: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required]
       });
     }
@@ -27,27 +29,24 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get Email() {
+    return this.userLogin.get('email');
+  }
+  get Password() {
+    return this.userLogin.get('password');
+  }
+
   onSubmit(): void {
     const email = this.userLogin.value.email;
     const password = this.userLogin.value.password;
-    this.afAuth.signInWithEmailAndPassword(email, password).then((ress) => {
-      console.log(ress);
+    this.afAuth.signInWithEmailAndPassword(email, password).then(() => {
       this.router.navigate(['/dashboard']);
       this.toastr.success('Bienvenido', 'Login exitoso');
     }
     ).catch((error) => {
       console.log(error);
-      this.toastr.error(this.firebaseError(error.code), 'Error');
+      this.toastr.error(this.codeError.response(error.code), 'Error');
     });
-  }
-
-  firebaseError(error: string): string {
-    switch (error) {
-      case 'auth/email-already-in-use': return 'El correo ya está en uso';
-      case 'auth/invalid-email': return 'El correo no es válido';
-      case 'auth/weak-password': return 'La contraseña es demasiado débil';
-      default: return 'Error desconocido';
-    }
   }
 
 }
