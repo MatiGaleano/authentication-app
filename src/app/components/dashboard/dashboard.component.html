@@ -1,42 +1,6 @@
 <div class="container">
-  <header
-    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
-  >
-    <a
-      href="/"
-      class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-light text-decoration-none"
-    >
-      <svg
-        class="bi me-2"
-        width="40"
-        height="32"
-        role="img"
-        aria-label="Bootstrap"
-      >
-        <use xlink:href="#bootstrap"></use>
-      </svg>
-    </a>
-
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a href="#" class="nav-link px-2 link-info">Home</a></li>
-      <li><a href="#" class="nav-link px-2 link-light">Features</a></li>
-      <li><a href="#" class="nav-link px-2 link-light">Pricing</a></li>
-      <li><a href="#" class="nav-link px-2 link-light">FAQs</a></li>
-      <li><a href="#" class="nav-link px-2 link-light">About</a></li>
-    </ul>
-
-    <div class="col-md-3 text-end">
-      <button
-        type="button"
-        class="btn btn-outline-primary me-2"
-        (click)="logout()"
-      >
-        Logout
-      </button>
-    </div>
-  </header>
   <div class="p-3 pb-md-4 mx-auto text-center">
-    <h2 class="display-4 fw-normal">Bienvenido!</h2>
+    <h2 class="display-4 fw-normal">Gracias por tu visita!</h2>
     <p class="fs-5 text-muted">{{ dataUser?.email }}</p>
   </div>
   <div
@@ -51,4 +15,47 @@
       allowfullscreen
     ></iframe>
   </div>
+  <footer
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mt-4 border-top"
+  >
+  <ul
+    class="nav col-12 col-md-auto mb-2 gap-3 justify-content-center mb-md-0"
+  >
+    <li>
+      <a
+        href="https://instagram.com/matigaleanodev"
+        target="_blank"
+        class="social__icon instagram"
+      >
+        <fa-icon [icon]="faInstagram"></fa-icon>
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://www.linkedin.com/in/matigaleanodev/"
+        target="_blank"
+        class="social__icon linkedin"
+      >
+        <fa-icon [icon]="faLinkedin"></fa-icon>
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://github.com/MatiGaleano"
+        target="_blank"
+        class="social__icon github"
+      >
+        <fa-icon [icon]="faGithub"></fa-icon>
+      </a>
+    </li>
+  </ul>
+    <p class="text-center text-light fs-5 col-12 col-md-auto">Copyright: Matias Galeano @2022</p>
+    <button
+      type="button"
+      class="btn bg-primary bg-opacity-75 text-light col-8 col-md-auto"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </footer>
 </div>

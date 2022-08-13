@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { faLinkedin, faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,10 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   dataUser: any;
+
+  faLinkedin = faLinkedin;
+  faGithub = faGithub;
+  faInstagram = faInstagram;
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
 

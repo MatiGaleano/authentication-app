@@ -43,3 +43,4 @@ Thumbs.db
 
 # Evironment variables
 /src/environments/*.ts
+/.firebase
