@@ -42,16 +42,6 @@ html {
   box-sizing: border-box;
   vertical-align: baseline;
 }
-img,
-picture,
-video,
-iframe,
-figure {
-  max-width: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center center;
-}
 a {
   display: block;
   text-decoration: none;

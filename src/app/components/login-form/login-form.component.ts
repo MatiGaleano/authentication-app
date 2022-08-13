@@ -39,12 +39,17 @@ export class LoginFormComponent implements OnInit {
   onSubmit(): void {
     const email = this.userLogin.value.email;
     const password = this.userLogin.value.password;
-    this.afAuth.signInWithEmailAndPassword(email, password).then(() => {
-      this.router.navigate(['/dashboard']);
-      this.toastr.success('Bienvenido', 'Login exitoso');
+    this.afAuth.signInWithEmailAndPassword(email, password).then((ress) => {
+      if (ress.user?.emailVerified){
+        this.router.navigate(['/dashboard']);
+        this.toastr.success('Bienvenido', 'Login exitoso');
+      } else {
+        this.router.navigate(['/verify-email']);
+        this.toastr.info('Por favor verifique su correo electrónico');
+      }
     }
     ).catch((error) => {
-      console.log(error);
+      console.error(error);
       this.toastr.error(this.codeError.response(error.code), 'Error');
     });
   }

@@ -38,7 +38,7 @@ export class PassRecoveryComponent implements OnInit {
       this.toastr.info('Se ha enviado un link de recuperacion a su Email', 'Envío exitoso');
       this.router.navigate(['/login']);
     } ).catch((error) => {
-      console.log(error);
+      console.error(error);
       this.toastr.error(this.codeError.response(error.code), 'Error');
     }
     );

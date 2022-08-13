@@ -49,11 +49,27 @@ export class RegisterFormComponent implements OnInit {
     this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
-        this.router.navigate(['/login']);
-        this.toastr.success('Registro exitoso', 'Bienvenido');
+        this.mailVerify();
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
+        this.toastr.error(this.codeError.response(error.code), 'Error');
+      });
+  }
+
+  mailVerify(): void {
+    this.afAuth.currentUser
+      .then((user) => {
+        user?.sendEmailVerification().then(() => {
+          this.router.navigate(['/login']);
+          this.toastr.info(
+            'Le enviamos un mail de verificación',
+            'Verificar correo'
+          );
+        });
+      })
+      .catch((error) => {
+        console.error(error);
         this.toastr.error(this.codeError.response(error.code), 'Error');
       });
   }
